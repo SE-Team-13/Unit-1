@@ -23,14 +23,16 @@ import java.util.*;
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
-	private JButton addParty, finished, assign;
-	private JFrame win;
-	private JList partyList;
+	private final JButton addParty;
+	private final JButton finished;
+	private final JButton assign;
+	private final JFrame win;
+	private final JList partyList;
 	
 	/** The maximum  number of members in a party */
-	private int maxMembers;
+	private final int maxMembers;
 	
-	private ControlDesk controlDesk;
+	private final ControlDesk controlDesk;
 
 	/**
 	 * Displays a GUI representation of the ControlDesk
@@ -88,7 +90,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
 			curLane.subscribe(laneStat);
-			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
+			curLane.getPinsetter().subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
 			laneStatusPanel.add(lanePanel);
@@ -175,6 +177,6 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	 */
 
 	public void receiveControlDeskEvent(ControlDeskEvent ce) {
-		partyList.setListData(((Vector) ce.getPartyQueue()));
+		partyList.setListData(ce.getPartyQueue());
 	}
 }

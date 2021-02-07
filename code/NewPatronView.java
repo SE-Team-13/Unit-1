@@ -29,16 +29,21 @@ public class NewPatronView implements ActionListener {
 
 	private int maxSize;
 
-	private JFrame win;
-	private JButton abort, finished;
-	private JLabel nickLabel, fullLabel, emailLabel;
-	private JTextField nickField, fullField, emailField;
+	private final JFrame win;
+	private final JButton abort;
+	private final JButton finished;
+	private final JLabel nickLabel;
+	private final JLabel fullLabel;
+	private final JLabel emailLabel;
+	private final JTextField nickField;
+	private final JTextField fullField;
+	private final JTextField emailField;
 	private String nick, full, email;
 
 	private boolean done;
 
 	private String selectedNick, selectedMember;
-	private AddPartyView addParty;
+	private final AddPartyView addParty;
 
 	public NewPatronView(AddPartyView v) {
 

@@ -17,11 +17,12 @@ import java.text.*;
 
 public class EndGameReport implements ActionListener, ListSelectionListener {
 
-	private JFrame win;
-	private JButton printButton, finished;
-	private JList memberList;
+	private final JFrame win;
+	private final JButton printButton;
+	private final JButton finished;
+	private final JList memberList;
 	private Vector myVector;
-	private Vector retVal;
+	private final Vector retVal;
 
 	private int result;
 
@@ -129,7 +130,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 		win.hide();
 	}
 
-	public static void main( String args[] ) {
+	public static void main(String[] args) {
 		Vector bowlers = new Vector();
 		for ( int i=0; i<4; i++ ) {
 			bowlers.add( new Bowler( "aaaaa", "aaaaa", "aaaaa" ) );

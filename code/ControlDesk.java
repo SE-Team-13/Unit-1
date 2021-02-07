@@ -46,16 +46,16 @@ import java.io.*;
 class ControlDesk extends Thread {
 
 	/** The collection of Lanes */
-	private HashSet lanes;
+	private final HashSet lanes;
 
 	/** The party wait queue */
-	private Queue partyQueue;
+	private final Queue partyQueue;
 
 	/** The number of lanes represented */
-	private int numLanes;
+	private final int numLanes;
 	
 	/** The collection of subscribers */
-	private Vector subscribers;
+	private final Vector subscribers;
 
     /**
      * Constructor for the ControlDesk class
@@ -174,9 +174,9 @@ class ControlDesk extends Thread {
 
 	public Vector getPartyQueue() {
 		Vector displayPartyQueue = new Vector();
-		for ( int i=0; i < ( (Vector)partyQueue.asVector()).size(); i++ ) {
+		for (int i = 0; i < partyQueue.asVector().size(); i++ ) {
 			String nextParty =
-				((Bowler) ((Vector) ((Party) partyQueue.asVector().get( i ) ).getMembers())
+				((Bowler) ((Party) partyQueue.asVector().get( i ) ).getMembers()
 					.get(0))
 					.getNickName() + "'s Party";
 			displayPartyQueue.addElement(nextParty);

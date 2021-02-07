@@ -14,15 +14,18 @@ import javax.swing.event.*;
 
 public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver {
 
-	private JPanel jp;
+	private final JPanel jp;
 
-	private JLabel curBowler, foul, pinsDown;
-	private JButton viewLane;
-	private JButton viewPinSetter, maintenance;
+	private final JLabel curBowler;
+	private final JLabel foul;
+	private final JLabel pinsDown;
+	private final JButton viewLane;
+	private final JButton viewPinSetter;
+	private final JButton maintenance;
 
-	private PinSetterView psv;
-	private LaneView lv;
-	private Lane lane;
+	private final PinSetterView psv;
+	private final LaneView lv;
+	private final Lane lane;
 	int laneNum;
 
 	boolean laneShowing;
@@ -133,7 +136,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 	}
 
 	public void receiveLaneEvent(LaneEvent le) {
-		curBowler.setText( ( (Bowler)le.getBowler()).getNickName() );
+		curBowler.setText( le.getBowler().getNickName() );
 		if ( le.isMechanicalProblem() ) {
 			maintenance.setBackground( Color.RED );
 		}	

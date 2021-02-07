@@ -138,9 +138,9 @@ import java.util.Date;
 
 public class Lane extends Thread implements PinsetterObserver {	
 	private Party party;
-	private Pinsetter setter;
-	private HashMap scores;
-	private Vector subscribers;
+	private final Pinsetter setter;
+	private final HashMap scores;
+	private final Vector subscribers;
 
 	private boolean gameIsHalted;
 
@@ -265,7 +265,7 @@ public class Lane extends Thread implements PinsetterObserver {
 						sr.sendEmail(thisBowler.getEmail());
 						Iterator printIt = printVector.iterator();
 						while (printIt.hasNext()){
-							if (thisBowler.getNick() == (String)printIt.next()){
+							if (thisBowler.getNick() == printIt.next()){
 								System.out.println("Printing " + thisBowler.getNick());
 								sr.sendPrintout();
 							}
@@ -416,8 +416,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @return		The new lane event
 	 */
 	private LaneEvent lanePublish(  ) {
-		LaneEvent laneEvent = new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber+1, curScores, ball, gameIsHalted);
-		return laneEvent;
+		return new LaneEvent(party, bowlIndex, currentThrower, cumulScores, scores, frameNumber+1, curScores, ball, gameIsHalted);
 	}
 
 	/** getScore()

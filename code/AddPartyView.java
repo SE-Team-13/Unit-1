@@ -41,15 +41,20 @@ import java.text.*;
 
 public class AddPartyView implements ActionListener, ListSelectionListener {
 
-	private int maxSize;
+	private final int maxSize;
 
-	private JFrame win;
-	private JButton addPatron, newPatron, remPatron, finished;
-	private JList partyList, allBowlers;
-	private Vector party, bowlerdb;
+	private final JFrame win;
+	private final JButton addPatron;
+	private final JButton newPatron;
+	private final JButton remPatron;
+	private final JButton finished;
+	private final JList partyList;
+	private final JList allBowlers;
+	private final Vector party;
+	private Vector bowlerdb;
 	private Integer lock;
 
-	private ControlDeskView controlDesk;
+	private final ControlDeskView controlDesk;
 
 	private String selectedNick, selectedMember;
 

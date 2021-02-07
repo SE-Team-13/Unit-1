@@ -14,10 +14,10 @@
 
 public class PinsetterEvent {
 
-	private boolean[] pinsStillStanding;
-	private boolean foulCommited;
-	private int throwNumber;
-	private int pinsDownThisThrow;
+	private final boolean[] pinsStillStanding;
+	private final boolean foulCommited;
+	private final int throwNumber;
+	private final int pinsDownThisThrow;
 
 	/** PinsetterEvent()
 	 * 
@@ -87,5 +87,5 @@ public class PinsetterEvent {
 	public int getThrowNumber() {
 		return throwNumber;
 	}
-};
+}
 

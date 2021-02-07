@@ -27,7 +27,7 @@ import java.util.HashMap;
 
 public class LaneEvent {
 
-	private Party p;
+	private final Party p;
 	int frame;
 	int ball;
 	Bowler bowler;
@@ -91,5 +91,5 @@ public class LaneEvent {
 		return bowler;
 	}
 
-};
+}
  
