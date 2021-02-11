@@ -1,19 +1,8 @@
-/**
- *
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
 
-import java.util.*;
-import java.text.*;
 
 public class EndGamePrompt implements ActionListener {
 
@@ -22,8 +11,6 @@ public class EndGamePrompt implements ActionListener {
 	private final JButton noButton;
 
 	private int result;
-
-	private String selectedNick, selectedMember;
 
 	public EndGamePrompt( String partyName ) {
 
@@ -36,7 +23,6 @@ public class EndGamePrompt implements ActionListener {
 		JPanel colPanel = new JPanel();
 		colPanel.setLayout(new GridLayout( 2, 1 ));
 
-		// Label Panel
 		JPanel labelPanel = new JPanel();
 		labelPanel.setLayout(new FlowLayout());
 		
@@ -45,11 +31,8 @@ public class EndGamePrompt implements ActionListener {
 
 		labelPanel.add( message );
 
-		// Button Panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 2));
-
-		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
 		yesButton = new JButton("Yes");
 		JPanel yesButtonPanel = new JPanel();
@@ -66,7 +49,7 @@ public class EndGamePrompt implements ActionListener {
 		buttonPanel.add(yesButton);
 		buttonPanel.add(noButton);
 
-		// Clean up main panel
+
 		colPanel.add(labelPanel);
 		colPanel.add(buttonPanel);
 
@@ -74,12 +57,10 @@ public class EndGamePrompt implements ActionListener {
 
 		win.pack();
 
-		// Center Window on Screen
 		Dimension screenSize = (Toolkit.getDefaultToolkit()).getScreenSize();
 		win.setLocation(
 			((screenSize.width) / 2) - ((win.getSize().width) / 2),
 			((screenSize.height) / 2) - ((win.getSize().height) / 2));
-		win.show();
 
 	}
 
@@ -103,10 +84,6 @@ public class EndGamePrompt implements ActionListener {
 		}
 		return result;	
 	}
-	
-	public void distroy() {
-		win.hide();
-	}
-	
+
 }
 
