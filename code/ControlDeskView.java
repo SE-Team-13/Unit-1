@@ -17,22 +17,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 
 import java.util.*;
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
-	private final JButton addParty;
-	private final JButton finished;
-	private final JButton assign;
-	private final JFrame win;
-	private final JList partyList;
+	private JButton addParty, finished, assign;
+	private JFrame win;
+	private JList partyList;
 	
 	/** The maximum  number of members in a party */
-	private final int maxMembers;
+	private int maxMembers;
 	
-	private final ControlDesk controlDesk;
+	private ControlDesk controlDesk;
 
 	/**
 	 * Displays a GUI representation of the ControlDesk
@@ -90,7 +87,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			Lane curLane = (Lane) it.next();
 			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
 			curLane.subscribe(laneStat);
-			curLane.getPinsetter().subscribe(laneStat);
+			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
 			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
 			laneStatusPanel.add(lanePanel);
@@ -134,7 +131,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		win.setLocation(
 			((screenSize.width) / 2) - ((win.getSize().width) / 2),
 			((screenSize.height) / 2) - ((win.getSize().height) / 2));
-		win.show();
+		win.setVisible(true);
 
 	}
 
@@ -153,7 +150,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			controlDesk.assignLane();
 		}
 		if (e.getSource().equals(finished)) {
-			win.hide();
+			win.setVisible(false);
 			System.exit(0);
 		}
 	}
@@ -177,6 +174,6 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	 */
 
 	public void receiveControlDeskEvent(ControlDeskEvent ce) {
-		partyList.setListData(ce.getPartyQueue());
+		partyList.setListData(((Vector) ce.getPartyQueue()));
 	}
 }
