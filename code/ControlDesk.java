@@ -19,7 +19,7 @@ class ControlDesk extends Thread {
 	/**
 	 * Constructor for the ControlDesk class
 	 *
-	 * param numlanes	the numbler of lanes to be represented
+	 * param numlanes the numbler of lanes to be represented
 	 *
 	 */
 
@@ -49,12 +49,14 @@ class ControlDesk extends Thread {
 
 			try {
 				sleep(250);
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 		}
 	}
 
 	/**
-	 * Iterate through the available lanes and assign the paties in the wait queue if lanes are available.
+	 * Iterate through the available lanes and assign the paties in the wait queue
+	 * if lanes are available.
 	 *
 	 */
 
@@ -75,7 +77,7 @@ class ControlDesk extends Thread {
 	/**
 	 * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
 	 *
-	 * @param partyNicks	A Vector of NickNames
+	 * @param partyNicks A Vector of NickNames
 	 *
 	 */
 
@@ -85,14 +87,15 @@ class ControlDesk extends Thread {
 	}
 
 	/**
-	 * Returns a Vector of party names to be displayed in the GUI representation of the wait queue.
+	 * Returns a Vector of party names to be displayed in the GUI representation of
+	 * the wait queue.
 	 *
 	 * @return a Vecotr of Strings
 	 *
 	 */
 
 	public Vector getPartyQueue() {
-		return  partyQueue.getPartyQueue();
+		return partyQueue.getPartyQueue();
 	}
 
 	/**
@@ -109,7 +112,7 @@ class ControlDesk extends Thread {
 	/**
 	 * Allows objects to subscribe as observers
 	 *
-	 * @param adding	the ControlDeskObserver that will be subscribed
+	 * @param adding the ControlDeskObserver that will be subscribed
 	 *
 	 */
 

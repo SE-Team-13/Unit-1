@@ -94,6 +94,7 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 		if (e.getSource().equals(finished)) {
 			win.hide();
 			result = 1;
+		}
 	}
 
 	public void valueChanged(ListSelectionEvent e) {

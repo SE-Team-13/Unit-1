@@ -3,10 +3,10 @@ import java.io.*;
 
 class ControlDeskSub extends Thread {
 
-	/* The collection of subscribers */
+    /* The collection of subscribers */
     private Vector sub;
 
-    /*  Constructor for subscribers */
+    /* Constructor for subscribers */
     public ControlDeskSub() {
         sub = new Vector();
     }
@@ -19,25 +19,21 @@ class ControlDeskSub extends Thread {
      */
 
     public void subscribe(ControlDeskObserver adding) {
-		sub.add(adding);
-	}
+        sub.add(adding);
+    }
 
-	/**
+    /**
      * Broadcast an event to subscribing objects.
      * 
-     * @param event	the ControlDeskEvent to broadcast
+     * @param event the ControlDeskEvent to broadcast
      *
      */
 
-	public void publish(ControlDeskEvent event) {
-		Iterator eventIterator = sub.iterator();
-		while (eventIterator.hasNext()) {
-			(
-				(ControlDeskObserver) eventIterator
-					.next())
-					.receiveControlDeskEvent(event);
-		}
-	}
-
+    public void publish(ControlDeskEvent event) {
+        Iterator eventIterator = sub.iterator();
+        while (eventIterator.hasNext()) {
+            ((ControlDeskObserver) eventIterator.next()).receiveControlDeskEvent(event);
+        }
+    }
 
 }
