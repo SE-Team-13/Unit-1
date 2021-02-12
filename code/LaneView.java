@@ -80,9 +80,7 @@ public class LaneView implements LaneObserver, ActionListener {
 				balls[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				balls[i][j].add(ballLabel[i][j]);
 			}
-		}
 
-		for (int i = 0; i != numBowlers; i++) {
 			for (int j = 0; j != 9; j++) {
 				ballGrid[i][j] = new JPanel();
 				ballGrid[i][j].setLayout(new GridLayout(0, 3));
@@ -90,15 +88,14 @@ public class LaneView implements LaneObserver, ActionListener {
 				ballGrid[i][j].add(balls[i][2 * j], BorderLayout.EAST);
 				ballGrid[i][j].add(balls[i][2 * j + 1], BorderLayout.EAST);
 			}
+
 			int j = 9;
 			ballGrid[i][j] = new JPanel();
 			ballGrid[i][j].setLayout(new GridLayout(0, 3));
 			ballGrid[i][j].add(balls[i][2 * j]);
 			ballGrid[i][j].add(balls[i][2 * j + 1]);
 			ballGrid[i][j].add(balls[i][2 * j + 2]);
-		}
 
-		for (int i = 0; i != numBowlers; i++) {
 			pins[i] = new JPanel();
 			pins[i].setBorder(BorderFactory.createTitledBorder(((Bowler) bowlers.get(i)).getNickName()));
 			pins[i].setLayout(new GridLayout(0, 10));
