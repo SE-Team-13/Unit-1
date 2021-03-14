@@ -22,13 +22,13 @@ import java.util.*;
 
 public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
-	private JButton addParty, finished, assign;
+	private JButton addParty, finished, assign, viewScore;
 	private JFrame win;
 	private JList partyList;
-	
-	/** The maximum  number of members in a party */
+
+	/** The maximum number of members in a party */
 	private int maxMembers;
-	
+
 	private ControlDesk controlDesk;
 
 	/**
@@ -61,12 +61,19 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		addPartyPanel.add(addParty);
 		controlsPanel.add(addPartyPanel);
 
+		viewScore = new JButton("View Scores");
+		JPanel viewScorePanel = new JPanel();
+		viewScorePanel.setLayout(new FlowLayout());
+		viewScore.addActionListener(this);
+		viewScorePanel.add(viewScore);
+		controlsPanel.add(viewScorePanel);
+
 		assign = new JButton("Assign Lanes");
 		JPanel assignPanel = new JPanel();
 		assignPanel.setLayout(new FlowLayout());
 		assign.addActionListener(this);
 		assignPanel.add(assign);
-//		controlsPanel.add(assignPanel);
+		// controlsPanel.add(assignPanel);
 
 		finished = new JButton("Finished");
 		JPanel finishedPanel = new JPanel();
@@ -80,16 +87,16 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		laneStatusPanel.setLayout(new GridLayout(numLanes, 1));
 		laneStatusPanel.setBorder(new TitledBorder("Lane Status"));
 
-		HashSet lanes=controlDesk.getLanes();
+		HashSet lanes = controlDesk.getLanes();
 		Iterator it = lanes.iterator();
-		int laneCount=0;
+		int laneCount = 0;
 		while (it.hasNext()) {
 			Lane curLane = (Lane) it.next();
-			LaneStatusView laneStat = new LaneStatusView(curLane,(laneCount+1));
+			LaneStatusView laneStat = new LaneStatusView(curLane, (laneCount + 1));
 			curLane.subscribe(laneStat);
-			((Pinsetter)curLane.getPinsetter()).subscribe(laneStat);
+			((Pinsetter) curLane.getPinsetter()).subscribe(laneStat);
 			JPanel lanePanel = laneStat.showLane();
-			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount ));
+			lanePanel.setBorder(new TitledBorder("Lane" + ++laneCount));
 			laneStatusPanel.add(lanePanel);
 		}
 
@@ -105,10 +112,9 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		partyList.setFixedCellWidth(120);
 		partyList.setVisibleRowCount(10);
 		JScrollPane partyPane = new JScrollPane(partyList);
-		partyPane.setVerticalScrollBarPolicy(
-			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		partyPanel.add(partyPane);
-		//		partyPanel.add(partyList);
+		// partyPanel.add(partyList);
 
 		// Clean up main panel
 		colPanel.add(controlsPanel, "East");
@@ -128,9 +134,8 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 
 		// Center Window on Screen
 		Dimension screenSize = (Toolkit.getDefaultToolkit()).getScreenSize();
-		win.setLocation(
-			((screenSize.width) / 2) - ((win.getSize().width) / 2),
-			((screenSize.height) / 2) - ((win.getSize().height) / 2));
+		win.setLocation(((screenSize.width) / 2) - ((win.getSize().width) / 2),
+				((screenSize.height) / 2) - ((win.getSize().height) / 2));
 		win.setVisible(true);
 
 	}
@@ -138,7 +143,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	/**
 	 * Handler for actionEvents
 	 *
-	 * @param e	the ActionEvent that triggered the handler
+	 * @param e the ActionEvent that triggered the handler
 	 *
 	 */
 
@@ -149,6 +154,9 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 		if (e.getSource().equals(assign)) {
 			controlDesk.assignLane();
 		}
+		if (e.getSource().equals(viewScore)) {
+			ScoreView scoreViewWin = new ScoreView(this);
+		}
 		if (e.getSource().equals(finished)) {
 			win.setVisible(false);
 			System.exit(0);
@@ -158,7 +166,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	/**
 	 * Receive a new party from andPartyView.
 	 *
-	 * @param addPartyView	the AddPartyView that is providing a new party
+	 * @param addPartyView the AddPartyView that is providing a new party
 	 *
 	 */
 
@@ -169,7 +177,7 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 	/**
 	 * Receive a broadcast from a ControlDesk
 	 *
-	 * @param ce	the ControlDeskEvent that triggered the handler
+	 * @param ce the ControlDeskEvent that triggered the handler
 	 *
 	 */
 
