@@ -30,8 +30,11 @@ public class ScoreHistoryFile {
 		String data;
 		while ((data = in.readLine()) != null) {
 			String[] scoredata = data.split("\t");
-			scores.add(new Score(scoredata[0], scoredata[1], scoredata[2]));
-
+			Vector row = new Vector<String>();
+			for (int i = 0; i < 3; i++) {
+				row.addElement(scoredata[i]);
+			}
+			scores.addElement(row);
 		}
 		return scores;
 	}

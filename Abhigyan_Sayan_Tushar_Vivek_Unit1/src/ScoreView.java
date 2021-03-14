@@ -7,10 +7,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
 
-public class ScoreView implements ActionListener {
+public class ScoreView {
     private final JFrame win;
-    private final JButton Alphabetically;
-    private final JButton highScoreFirst;
     private JList bowlerList;
     private final ControlDeskView controlDesk;
     private Vector bowlerdb;
@@ -34,35 +32,24 @@ public class ScoreView implements ActionListener {
             System.err.println("File Error");
             bowlerdb = new Vector();
         }
-        bowlerList = new JList(bowlerdb);
-        bowlerList.setVisibleRowCount(8);
-        bowlerList.setFixedCellWidth(200);
-        JScrollPane bowlerPane = new JScrollPane(bowlerList);
+
+        Vector<String> columnNames = new Vector<String>(3);
+        columnNames.add("Name");
+        columnNames.add("Date");
+        columnNames.add("Score");
+
+        JTable table = new JTable(bowlerdb, columnNames);
+        table.setAutoCreateRowSorter(true);
+        // bowlerList = new JList(bowlerdb);
+        // bowlerList.setVisibleRowCount(8);
+        // bowlerList.setFixedCellWidth(200);
+
+        JScrollPane bowlerPane = new JScrollPane(table);
+        table.setFillsViewportHeight(true);
         bowlerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         bowlerPanel.add(bowlerPane);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 1));
-
-        Insets buttonMargin = new Insets(4, 4, 4, 4);
-
-        Alphabetically = new JButton("Alphabetically");
-        JPanel alphabeticallyPanel = new JPanel();
-        alphabeticallyPanel.setLayout(new FlowLayout());
-        Alphabetically.addActionListener(this);
-        alphabeticallyPanel.add(Alphabetically);
-
-        highScoreFirst = new JButton("Rank Wise");
-        JPanel highScoreFirstPanel = new JPanel();
-        highScoreFirstPanel.setLayout(new FlowLayout());
-        highScoreFirst.addActionListener(this);
-        highScoreFirstPanel.add(highScoreFirst);
-
-        buttonPanel.add(alphabeticallyPanel);
-        buttonPanel.add(highScoreFirstPanel);
-
         colPanel.add(bowlerPanel);
-        colPanel.add(buttonPanel);
 
         win.getContentPane().add("Center", colPanel);
         win.pack();
@@ -74,11 +61,4 @@ public class ScoreView implements ActionListener {
         win.show();
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(Alphabetically)) {
-
-        } else if (e.getSource().equals(highScoreFirst)) {
-
-        }
-    }
 }
