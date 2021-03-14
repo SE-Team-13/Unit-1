@@ -13,6 +13,7 @@ public class ScoreView implements ActionListener {
     private final JButton highScoreFirst;
     private JList bowlerList;
     private final ControlDeskView controlDesk;
+    private Vector bowlerdb;
 
     public ScoreView(ControlDeskView controlDesk) {
         this.controlDesk = controlDesk;
@@ -26,10 +27,19 @@ public class ScoreView implements ActionListener {
         JPanel bowlerPanel = new JPanel();
         bowlerPanel.setLayout(new FlowLayout());
         bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
-        
-        try{
-            bowlerdb = new Vector(ScoreHistoryFile.getScores())
+
+        try {
+            bowlerdb = new Vector(ScoreHistoryFile.getAllScores());
+        } catch (Exception e) {
+            System.err.println("File Error");
+            bowlerdb = new Vector();
         }
+        bowlerList = new JList(bowlerdb);
+        bowlerList.setVisibleRowCount(8);
+        bowlerList.setFixedCellWidth(200);
+        JScrollPane bowlerPane = new JScrollPane(bowlerList);
+        bowlerPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        bowlerPanel.add(bowlerPane);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 1));
@@ -42,7 +52,7 @@ public class ScoreView implements ActionListener {
         Alphabetically.addActionListener(this);
         alphabeticallyPanel.add(Alphabetically);
 
-        highScoreFirst = new JButton("Finished");
+        highScoreFirst = new JButton("Rank Wise");
         JPanel highScoreFirstPanel = new JPanel();
         highScoreFirstPanel.setLayout(new FlowLayout());
         highScoreFirst.addActionListener(this);
