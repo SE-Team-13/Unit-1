@@ -2,18 +2,18 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play = false;
-    private int throwNum = 0;
-    private int totalPins = 0;
+    public int totalPins = 0;
     private Timer timer;
     private int delay = 8;
     private int ballposX = 50;
     private int ballposy = 550;
     private int ballXdir = 0;
     private int ballYdir = -1;
-    private SkittleGenerator sg;
+    public SkittleGenerator sg;
 
     public Gameplay() {
         addKeyListener(this);
@@ -23,6 +23,15 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         timer.start();
         sg = new SkittleGenerator();
 
+    }
+
+    public Gameplay(int pins[]) {
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+        timer = new Timer(delay, this);
+        timer.start();
+        sg = new SkittleGenerator(pins);
     }
 
     @Override
@@ -62,11 +71,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             }
         }
         if (ballposy <= 0) {
-            if (throwNum == 1) {
-                return;
-            }
-            throwNum++;
-            ballposy = 550;
+            return;
         }
         repaint();
     }
