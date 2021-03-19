@@ -14,6 +14,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int ballXdir = 0;
     private int ballYdir = -1;
     public SkittleGenerator sg;
+    public boolean gameFinished = false;
 
     public Gameplay() {
         addKeyListener(this);
@@ -21,6 +22,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         setFocusTraversalKeysEnabled(false);
         timer = new Timer(delay, this);
         timer.start();
+        gameFinished = false;
         sg = new SkittleGenerator();
 
     }
@@ -29,6 +31,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+        gameFinished = false;
         timer = new Timer(delay, this);
         timer.start();
         sg = new SkittleGenerator(pins);
@@ -65,12 +68,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                     sg.dropSkittle(i);
                     totalPins++;
                     if (totalPins == 10) {
-                        play = false;
+                        reset();
                     }
                 }
             }
         }
         if (ballposy <= 0) {
+            reset();
             return;
         }
         repaint();
@@ -80,6 +84,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
 
+    }
+
+    public void reset() {
+        play = false;
+        gameFinished = true;
+        ballposy = 550;
     }
 
     @Override

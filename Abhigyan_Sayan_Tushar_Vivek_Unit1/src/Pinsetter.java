@@ -89,6 +89,7 @@ public class Pinsetter {
 	private boolean foul;
 	private int throwNumber;
 	private Gameplay gameplay;
+	private JFrame obj;
 
 	/**
 	 * sendEvent()
@@ -114,20 +115,14 @@ public class Pinsetter {
 	 * @post a new pinsetter is created
 	 * @return Pinsetter object
 	 */
-	public Pinsetter(Gameplay inputgameplay) {
+	public Pinsetter() {
 		pins = new boolean[10];
 		rnd = new Random();
 		subscribers = new Vector();
 		foul = false;
-		gameplay = inputgameplay;
-		JFrame obj = new JFrame();
-		obj.setBounds(10, 10, 200, 800);
-		obj.setTitle("Simple Bowling");
-		obj.setResizable(false);
-		obj.setVisible(true);
-		obj.add(gameplay);
+		obj = new JFrame();
+		gameplay = new Gameplay();
 		reset();
-
 	}
 
 	/**
@@ -142,11 +137,22 @@ public class Pinsetter {
 	public void ballThrown() { // simulated event of ball hits sensor
 		int count = 0;
 		foul = false;
-
+		if (!obj.isVisible()) {
+			obj.setBounds(10, 10, 200, 800);
+			obj.setTitle("Simple Bowling");
+			obj.setResizable(false);
+			obj.setVisible(true);
+			obj.add(gameplay);
+		}
+		while (!gameplay.gameFinished) {
+			// sleep(10);
+		}
+		obj.setVisible(false);
 		count = gameplay.totalPins;
 		for (int i = 0; i < pins.length; i++) {
 			pins[i] = gameplay.sg.skittleUp[i];
 		}
+		gameplay.gameFinished = false;
 
 		// double skill = rnd.nextDouble();
 		// for (int i=0; i <= 9; i++) {

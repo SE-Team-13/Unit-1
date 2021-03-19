@@ -158,7 +158,6 @@ public class Lane extends Thread implements PinsetterObserver {
 
 	private int[][] finalScores;
 	private int gameNumber;
-	private Gameplay gameplay;
 
 	private Bowler currentThrower; // = the thrower who just took a throw
 
@@ -171,8 +170,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @post a new lane has been created and its thered is executing
 	 */
 	public Lane() {
-		gameplay = new Gameplay();
-		setter = new Pinsetter(gameplay);
+		setter = new Pinsetter();
 		scores = new HashMap();
 		subscribers = new Vector();
 
@@ -211,6 +209,7 @@ public class Lane extends Thread implements PinsetterObserver {
 					while (canThrowAgain) {
 						setter.ballThrown(); // simulate the thrower's ball hiting
 						ball++;
+						System.out.print("Ball Throwing done");
 					}
 
 					if (frameNumber == 9) {
