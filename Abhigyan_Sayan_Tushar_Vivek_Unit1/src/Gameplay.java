@@ -69,6 +69,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                     totalPins++;
                     if (totalPins == 10) {
                         reset();
+                        return;
                     }
                 }
             }

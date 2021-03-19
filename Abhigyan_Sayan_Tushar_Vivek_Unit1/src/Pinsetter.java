@@ -145,7 +145,11 @@ public class Pinsetter {
 			obj.add(gameplay);
 		}
 		while (!gameplay.gameFinished) {
-			// sleep(10);
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				;
+			}
 		}
 		obj.setVisible(false);
 		count = gameplay.totalPins;
@@ -153,7 +157,7 @@ public class Pinsetter {
 			pins[i] = gameplay.sg.skittleUp[i];
 		}
 		gameplay.gameFinished = false;
-
+		gameplay.totalPins = 0;
 		// double skill = rnd.nextDouble();
 		// for (int i=0; i <= 9; i++) {
 		// if (pins[i]) {
@@ -215,6 +219,7 @@ public class Pinsetter {
 	public void resetPins() {
 		for (int i = 0; i <= 9; i++) {
 			pins[i] = true;
+			gameplay.sg.skittleUp[i] = true;
 		}
 	}
 
