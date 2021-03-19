@@ -191,6 +191,10 @@ public class Pinsetter {
 		foul = false;
 		throwNumber = 1;
 		resetPins();
+		gameplay.totalPins = 0;
+		for (int i = 0; i < 10; i++) {
+			gameplay.sg.skittleUp[i] = true;
+		}
 
 		try {
 			Thread.sleep(1000);
