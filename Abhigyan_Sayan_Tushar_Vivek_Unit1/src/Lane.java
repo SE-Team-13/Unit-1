@@ -207,9 +207,8 @@ public class Lane extends Thread implements PinsetterObserver {
 					tenthFrameStrike = false;
 					ball = 0;
 					while (canThrowAgain) {
-						setter.ballThrown(); // simulate the thrower's ball hiting
+						setter.ballThrown(currentThrower); // simulate the thrower's ball hiting
 						ball++;
-						System.out.print("Ball Throwing done");
 					}
 
 					if (frameNumber == 9) {
@@ -298,7 +297,8 @@ public class Lane extends Thread implements PinsetterObserver {
 	public void receivePinsetterEvent(PinsetterEvent pe) {
 
 		if (pe.pinsDownOnThisThrow() >= 0) { // this is a real throw
-//			System.out.println(pe.getThrowNumber()+" "+ frameNumber +" "+pe.pinsDownOnThisThrow());
+			// System.out.println(pe.getThrowNumber()+" "+ frameNumber +"
+			// "+pe.pinsDownOnThisThrow());
 			markScore(currentThrower, frameNumber + 1, pe.getThrowNumber(), pe.pinsDownOnThisThrow());
 
 			// next logic handles the ?: what conditions dont allow them another throw?
@@ -442,8 +442,8 @@ public class Lane extends Thread implements PinsetterObserver {
 		int strikeballs = 0;
 		int totalScore = 0;
 		curScore = (int[]) scores.get(Cur);
-//		curScore[3]=0;
-//		curScore[4]=0;
+		// curScore[3]=0;
+		// curScore[4]=0;
 		for (int i = 0; i != 10; i++) {
 			cumulScores[bowlIndex][i] = 0;
 		}
@@ -505,8 +505,7 @@ public class Lane extends Thread implements PinsetterObserver {
 				} else {
 					break;
 				}
-			}
-			else {
+			} else {
 				// We're dealing with a normal throw, add it and be on our way.
 				if (i % 2 == 0 && i < 18) {
 					if (i / 2 == 0) {
@@ -542,17 +541,16 @@ public class Lane extends Thread implements PinsetterObserver {
 					}
 				}
 			}
-			if (i==2 && curScore[0] == 0 && curScore[1] == 0) {
-				cumulScores[bowlIndex][(i / 2) - 1] -= curScore[i]/2;
+			if (i == 2 && curScore[0] == 0 && curScore[1] == 0) {
+				cumulScores[bowlIndex][(i / 2) - 1] -= curScore[i] / 2;
 			}
 
 			if (i > 1 && curScore[i - 1] == 0 && curScore[i] == 0 && i < current - 1) {
-				System.out.println(i+" "+curScore[i]+" "+curScore[i - 1]);
-				int max=0;
-				for(int j=0;j<i;j++)
-				{
-					System.out.println(max+" "+curScore[j]);
-					if(max < curScore[j])
+				System.out.println(i + " " + curScore[i] + " " + curScore[i - 1]);
+				int max = 0;
+				for (int j = 0; j < i; j++) {
+					System.out.println(max + " " + curScore[j]);
+					if (max < curScore[j])
 						max = curScore[j];
 				}
 				cumulScores[bowlIndex][(i / 2) - 1] -= max;
@@ -586,7 +584,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * 
 	 * Method that will add a subscriber
 	 * 
-//	 * @param subscribe Observer that is to be added
+	 * // * @param subscribe Observer that is to be added
 	 */
 
 	public void subscribe(LaneObserver adding) {

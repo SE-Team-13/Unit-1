@@ -134,12 +134,12 @@ public class Pinsetter {
 	 * @post pins may have been knocked down and the thrownumber has been
 	 *       incremented
 	 */
-	public void ballThrown() { // simulated event of ball hits sensor
+	public void ballThrown(Bowler bowler) { // simulated event of ball hits sensor
 		int count = 0;
 		foul = false;
 		if (!obj.isVisible()) {
 			obj.setBounds(10, 10, 200, 800);
-			obj.setTitle("Simple Bowling");
+			obj.setTitle(bowler.getNickName());
 			obj.setResizable(false);
 			obj.setVisible(true);
 			obj.add(gameplay);
