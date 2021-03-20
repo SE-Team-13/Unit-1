@@ -130,7 +130,7 @@
  *
  * 
  */
-
+import javax.swing.*;
 import java.util.Vector;
 import java.util.Iterator;
 import java.util.HashMap;
@@ -190,11 +190,9 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * entry point for execution of this lane
 	 */
 	public void run() {
-
 		while (true) {
 			if (partyAssigned && !gameFinished) { // we have a party on this lane,
 				// so next bower can take a throw
-
 				while (gameIsHalted) {
 					try {
 						sleep(10);
@@ -211,6 +209,7 @@ public class Lane extends Thread implements PinsetterObserver {
 					while (canThrowAgain) {
 						setter.ballThrown(); // simulate the thrower's ball hiting
 						ball++;
+						System.out.print("Ball Throwing done");
 					}
 
 					if (frameNumber == 9) {
