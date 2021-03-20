@@ -81,7 +81,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 		partyList = new JList(empty);
 		partyList.setFixedCellWidth(120);
-		partyList.setVisibleRowCount(5);
+		partyList.setVisibleRowCount(7);
 		partyList.addListSelectionListener(this);
 		JScrollPane partyPane = new JScrollPane(partyList);
 		// partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -159,10 +159,14 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(addPatron) && selectedNick != null && party.size() < maxSize) {
+		if (e.getSource().equals(addPatron) && selectedNick != null) {
 			if (party.contains(selectedNick)) {
 				System.err.println("Member already in Party");
-			} else {
+			} 
+			else if(party.size() >= maxSize) {
+				System.err.println("Maximum Players can only be 6");
+			}
+			else {
 				party.add(selectedNick);
 				partyList.setListData(party);
 			}
@@ -218,8 +222,8 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 				BowlerFile.putBowlerInfo(newPatron.getNick(), newPatron.getFull(), newPatron.getEmail());
 				bowlerdb = new Vector(BowlerFile.getBowlers());
 				allBowlers.setListData(bowlerdb);
-				party.add(newPatron.getNick());
-				partyList.setListData(party);
+				// party.add(newPatron.getNick());
+				// partyList.setListData(party);
 			} else {
 				System.err.println("A Bowler with that name already exists.");
 			}

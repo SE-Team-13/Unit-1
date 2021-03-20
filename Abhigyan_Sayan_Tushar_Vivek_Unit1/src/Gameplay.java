@@ -70,7 +70,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         }
         for (int i = 0; i < 10; i++) {
             if (sg.skittleUp[i]) {
-                Rectangle pinRect = new Rectangle(sg.skittleposition[2 * i], sg.skittleposition[2 * i + 1], 20, 20);
+                Rectangle pinRect = new Rectangle(sg.skittleposition[2 * i], sg.skittleposition[2 * i + 1], 22, 22);
                 Rectangle ballRect = new Rectangle((int) ballposX, (int) ballposy, 40, 40);
                 if (ballRect.intersects(pinRect)) {
                     sg.dropSkittle(i);
