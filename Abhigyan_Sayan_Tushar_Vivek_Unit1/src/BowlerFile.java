@@ -26,6 +26,8 @@ class BowlerFile {
 
 	/** The location of the bowelr database */
 	private static String BOWLER_DAT = "BOWLERS.DAT";
+	// private static String BOWLER_DAT =
+	// "/home/viviek/Desktop/Sem_4/SE/Final/src/BOWLERS.DAT";
 
 	/**
 	 * Retrieves bowler information from the database and returns a Bowler objects

@@ -17,6 +17,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.io.*;
 
 import java.util.*;
 
@@ -158,6 +159,9 @@ public class ControlDeskView implements ActionListener, ControlDeskObserver {
 			ScoreView scoreViewWin = new ScoreView(this);
 		}
 		if (e.getSource().equals(finished)) {
+			String TEMPSCORE_DAT = "/home/viviek/Desktop/Sem_4/SE/UNIT2Q3/src/TEMP.DAT";
+			File file = new File(TEMPSCORE_DAT);
+			file.delete();
 			win.setVisible(false);
 			System.exit(0);
 		}

@@ -130,13 +130,15 @@
  *
  * 
  */
-import javax.swing.*;
 import java.util.Vector;
 import java.util.Iterator;
 import java.util.HashMap;
 import java.util.Date;
+import java.util.*;
+import java.io.*;
+import java.util.List;
 
-public class Lane extends Thread implements PinsetterObserver {
+public class Lane extends Thread implements PinsetterObserver, Serializable {
 	private Party party;
 	private final Pinsetter setter;
 	private final HashMap scores;
@@ -239,6 +241,7 @@ public class Lane extends Thread implements PinsetterObserver {
 			} else if (partyAssigned && gameFinished) {
 				EndGamePrompt egp = new EndGamePrompt(((Bowler) party.getMembers().get(0)).getNickName() + "'s Party");
 				int result = egp.getResult();
+				egp.destroy();
 				egp = null;
 
 				System.out.println("result was: " + result);

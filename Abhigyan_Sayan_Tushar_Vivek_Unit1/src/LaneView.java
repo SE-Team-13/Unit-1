@@ -155,9 +155,7 @@ public class LaneView implements LaneObserver, ActionListener {
 				pins[i].add(scores[i][k], BorderLayout.EAST);
 			}
 
-
 			panel.add(pins[i]);
-			
 		}
         
 
