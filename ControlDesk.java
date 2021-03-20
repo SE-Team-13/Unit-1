@@ -66,8 +66,8 @@ class ControlDesk extends Thread {
 
 	public ControlDesk(int numLanes) {
 		this.numLanes = numLanes;
-		lanes = new HashSet(numLanes); //hashset
-		partyQueue = new Queue(); //queue
+		lanes = new HashSet(numLanes);
+		partyQueue = new Queue();
 
 		subscribers = new Vector();
 
